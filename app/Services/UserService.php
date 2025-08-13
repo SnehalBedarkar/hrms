@@ -21,4 +21,14 @@ class UserService
         $employee = User::findOrFail($id);
         return $employee;
     }
+
+    public function updateUser($id, $data)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->mobile_number = $data['mobile_number'];
+        $user->save();
+    }
 }
