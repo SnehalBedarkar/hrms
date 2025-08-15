@@ -6,6 +6,13 @@ use App\Models\User;
 
 class UserService
 {
+
+    public function users()
+    {
+        $users = User::select('id', 'name', 'mobile_number', 'email')->get();
+        return $users;
+    }
+
     public function createUser($data)
     {
         $user = User::create([
@@ -14,6 +21,9 @@ class UserService
             'password' => $data['password'],
             'mobile_number' => $data['mobile_number']
         ]);
+
+        $roles = $data['roles'];
+        dd($roles);
     }
 
     public function getUserById($id)
@@ -29,6 +39,14 @@ class UserService
         $user->email = $data['email'];
         $user->password = $data['password'];
         $user->mobile_number = $data['mobile_number'];
+        $user->save();
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->deleted_by = auth()->id();
+        $user->delete();
         $user->save();
     }
 }

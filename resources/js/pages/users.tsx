@@ -1,42 +1,31 @@
-
-import AppLayout from "@/layouts/app-layout";
-import { useTable } from "react-table";
+import AppLayout from '@/layouts/app-layout';
+import React from 'react';
+import { useTable } from 'react-table';
 
 export default function Users({ users }) {
-    // Table columns definition
-    const columns = React.useMemo(
-        () => [
-            { Header: "ID", accessor: "id" },
-            { Header: "Name", accessor: "name" },
-            { Header: "Email", accessor: "email" },
-            { Header: "Mobile", accessor: "mobile_number" },
-        ],
-        []
-    );
-
-    // Table data (comes from Laravel controller)
     const data = React.useMemo(() => users, [users]);
 
-    // Table instance
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-        useTable({ columns, data });
+    const columns = React.useMemo(
+        () => [
+            { Header: 'ID', accessor: 'id' },
+            { Header: 'Name', accessor: 'name' },
+            { Header: 'Email', accessor: 'email' },
+        ],
+        [],
+    );
+
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
     return (
         <AppLayout>
-            <h1 className="text-2xl font-bold mb-4">Employees</h1>
-            <table
-                {...getTableProps()}
-                className="table-auto border-collapse border border-gray-300 w-full"
-            >
-                <thead className="bg-gray-100">
+            <h1 className="mb-4 text-2xl font-bold">Users</h1>
+            <table {...getTableProps()} className="w-full table-auto border-collapse border border-gray-300">
+                <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps()}
-                                    className="border border-gray-300 px-4 py-2 text-left"
-                                >
-                                    {column.render("Header")}
+                                <th {...column.getHeaderProps()} className="border border-gray-300 px-4 py-2">
+                                    {column.render('Header')}
                                 </th>
                             ))}
                         </tr>
@@ -48,11 +37,8 @@ export default function Users({ users }) {
                         return (
                             <tr {...row.getRowProps()}>
                                 {row.cells.map((cell) => (
-                                    <td
-                                        {...cell.getCellProps()}
-                                        className="border border-gray-300 px-4 py-2"
-                                    >
-                                        {cell.render("Cell")}
+                                    <td {...cell.getCellProps()} className="border border-gray-300 px-4 py-2">
+                                        {cell.render('Cell')}
                                     </td>
                                 ))}
                             </tr>

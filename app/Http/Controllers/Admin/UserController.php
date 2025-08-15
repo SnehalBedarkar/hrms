@@ -23,8 +23,11 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
-        return Inertia::render('Pages/users', compact('users'));
+        $users = $this->userService->users();
+        return response()->json([
+            'success' => true,
+            'users' => $users
+        ]);
     }
 
     public function store(UserRequest $request)
@@ -61,5 +64,9 @@ class UserController extends Controller
                 'error' => "Error in Fetching Employee"
             ]);
         }
+    }
+
+    public function update($id){
+        
     }
 }
