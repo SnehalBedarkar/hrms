@@ -14,8 +14,8 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Employees', // New menu item
-        href: '/employees', // Should match Laravel route
+        title: 'Users', // New menu item
+        href: '/users', 
         icon: Users,
     },
 ];

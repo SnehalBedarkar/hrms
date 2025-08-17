@@ -24,8 +24,8 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userService->users();
-        return response()->json([
-            'success' => true,
+
+        return Inertia::render('users', [
             'users' => $users
         ]);
     }
@@ -66,7 +66,7 @@ class UserController extends Controller
         }
     }
 
-    // public function update($id) {
+    // public function update($id) {    
 
-    // }
+    // 
 }
