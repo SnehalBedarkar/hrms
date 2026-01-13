@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\DesignationController;
+use App\Http\Controllers\Api\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,11 @@ Route::post('/designations/store', [DesignationController::class, 'store']);
 Route::get('/designations/edit/{id}', [DesignationController::class, 'edit']);
 Route::put('/designations/update/{id}', [DesignationController::class, 'update']);
 Route::delete('/designations/delete/{id}', [DesignationController::class, 'destroy']);
+
+Route::get('/employees', [EmployeeController::class, 'index']);
+Route::post('/employees/store', [EmployeeController::class, 'store']);
+Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit']);
+Route::post('/employees/update/{id}', [EmployeeController::class, 'update']);
+Route::delete('/employees/delete/{id}', [EmployeeController::class, 'destroy']);
 
 
